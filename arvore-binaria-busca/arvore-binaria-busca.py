@@ -10,6 +10,7 @@ class No:
 class ArvoreBinariaBusca:
     def __init__(self):
         self.raiz = None
+        self.ligacoes = []
 
     def inserir(self, valor):
         novo = No(valor)
@@ -25,14 +26,27 @@ class ArvoreBinariaBusca:
                     atual = atual.esquerda
                     if atual is None:
                         pai.esquerda = novo
+                        self.ligacoes.append(str(pai.valor) + "->" + str(novo.valor))
                         return
                 # Adiciona à direita
                 else:
                     atual = atual.direita
                     if atual is None:
                         pai.direita = novo
+                        self.ligacoes.append(str(pai.valor) + "->" + str(novo.valor))
                         return
 
+
+    def pesquisar(self,valor):
+        atual = self.raiz
+        while atual.valor != valor:
+            if valor < atual.valor:
+                atual = atual.esquerda
+            else:
+                atual = atual.direita
+            if atual is None:
+                return None
+        return atual
 
     def __is_empty(self, novo):
         if self.raiz is None:
@@ -56,5 +70,7 @@ if __name__ == "__main__":
 
     print(arvore.raiz.esquerda.valor)
     print(arvore.raiz.direita.valor)
+
+    print(arvore.pesquisar(18))
 
 
