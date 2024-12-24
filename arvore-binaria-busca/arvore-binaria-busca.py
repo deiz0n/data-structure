@@ -48,9 +48,56 @@ class ArvoreBinariaBusca:
                 return None
         return atual
 
-    def __is_empty(self, novo):
+    # Raiz, esquerda e direita
+    def pre_ordem(self,no):
+        if no is not None:
+            print(no.valor)
+            self.pre_ordem(no.esquerda)
+            self.pre_ordem(no.direita)
+
+    # Esquerda, raiz e direita
+    def em_ordem(self, no):
+        if no is not None:
+            self.em_ordem(no.esquerda)
+            print(no.valor)
+            self.pre_ordem(no.direita)
+
+    # Esquerda, direita e raiz
+    def pos_ordem(self, no):
+        if no is not None:
+            self.pos_ordem(no.esquerda)
+            self.pos_ordem(no.direita)
+            print(no.valor)
+
+    def excluir(self, valor):
         if self.raiz is None:
-            self.raiz = novo
+            print("A árvore está vazia")
+            return
+
+        atual = self.raiz
+        pai = self.raiz
+        e_esquerda = True
+        while atual.valor != valor:
+            pai = atual
+            #Esquerda
+            if valor < atual.valor:
+                e_esquerda = True
+                atual = atual.esquerda
+            #Direita
+            else:
+                e_esquerda = False
+                atual = atual.direita
+            if atual is None:
+                return False
+
+        # O nó a ser apagado é uma folha
+        if atual.esquerda is None and atual.direita is None:
+            if atual == self.raiz:
+                self.raiz = None
+            elif e_esquerda is True:
+                pai.esquerda = None
+            else:
+                pai.direita = None
 
 if __name__ == "__main__":
     arvore = ArvoreBinariaBusca()
@@ -72,5 +119,6 @@ if __name__ == "__main__":
     print(arvore.raiz.direita.valor)
 
     print(arvore.pesquisar(18))
+    print(arvore.pos_ordem(arvore.raiz))
 
 
