@@ -2,9 +2,9 @@ import numpy as np
 
 class Pilha:
     def __init__(self, capacidade):
-        self.__capacidade = capacidade;
+        self.__capacidade = capacidade
         self.__topo = - 1
-        self.__valores = np.empty(self.__capacidade, dtype=int)
+        self.__valores = np.empty(self.__capacidade, dtype=object)
         
     def __pilha_cheia(self):
         if self.__topo == self.__capacidade -1:
@@ -29,9 +29,11 @@ class Pilha:
     def desempilhar(self):
         if self.__pilha_vazia():
             print("Stack is empty")
-            return
+            return None
         else:
+            temp = self.__valores(self.__topo)
             self.__topo -= 1
+            return temp
             
     def ver_topo(self):
         if self.__topo != -1:
