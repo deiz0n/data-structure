@@ -6,7 +6,7 @@ class FilaCircular:
         self.inicio = 0
         self.final = -1
         self.numeros_elementos = 0
-        self.valores = np.empty(self.capacidade, dtype=int)
+        self.valores = np.empty(self.capacidade, dtype=object)
 
     def __fila_vazia(self):
         return self.numeros_elementos == 0
@@ -41,24 +41,3 @@ class FilaCircular:
         if self.__fila_vazia():
             return -1
         return self.valores[self.inicio]
-
-
-queue = FilaCircular(5)
-
-queue.enfileirar(1)
-queue.enfileirar(2)
-queue.enfileirar(3)
-queue.enfileirar(4)
-queue.enfileirar(5)
-
-print(queue.primeiro())
-
-queue.desenfileirar()
-queue.desenfileirar()
-
-print(queue.primeiro())
-
-queue.enfileirar(6)
-queue.enfileirar(7)
-
-print(queue.valores)

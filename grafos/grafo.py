@@ -3,7 +3,6 @@ from grafos.adjacente import Adjacente
 from pilha.pilha import Pilha
 from fila.fila_circular import FilaCircular
 
-
 class Grafo:
     arad = Vertice('Arad')
     zerind = Vertice('Zerind')
